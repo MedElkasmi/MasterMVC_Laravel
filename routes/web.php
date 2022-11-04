@@ -13,74 +13,76 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/home','Homecontroller@index')->name('home');
 
-Route::get('/', function () {
+Route::get('/login','CustomAuthController@index')->name('login');
+
+Route::post('/custom-login', 'CustomAuthController@CustomLogin')->name('login.custom'); 
+
+Route::get('/add', function () {
     return view('add');
-});
+})->name('add');
 
-Route::get('/', function () {
+Route::get('/adminlist', function () {
     return view('adminlist');
 });
 
-Route::get('/', function () {
+Route::get('/admins', function () {
     return view('admins');
 });
 
-Route::get('/', function () {
+Route::get('/alert', function () {
     return view('alert');
 });
 
-Route::get('/', function () {
+Route::get('/archive', function () {
     return view('archive');
 });
 
-Route::get('/', function () {
+Route::get('/content', function () {
     return view('content');
 });
 
-Route::get('/', function () {
+Route::get('/delete', function () {
     return view('delete');
 });
 
-Route::get('/', function () {
+Route::get('/footer', function () {
     return view('footer');
 });
 
-Route::get('/', function () {
+Route::get('/header', function () {
     return view('header');
 });
 
-Route::get('/', function () {
+Route::get('/hresoures', function () {
     return view('hresoures');
 });
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/', function () {
+Route::get('/logout', function () {
     return view('logout');
 });
 
-Route::get('/', function () {
+Route::get('/paymentcheck', function () {
     return view('paymentcheck');
 });
 
-Route::get('/', function () {
+Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/', function () {
+Route::get('/salarytracking', function () {
     return view('salarytracking');
 });
 
-Route::get('/', function () {
+Route::get('/update', function () {
     return view('update');
 });
 
-Route::get('/', function () {
+Route::get('/vacation', function () {
     return view('vacation');
 });
