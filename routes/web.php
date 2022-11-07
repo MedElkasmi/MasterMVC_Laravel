@@ -19,6 +19,8 @@ Route::get('/login','CustomAuthController@index')->name('login');
 
 Route::post('/custom-login', 'CustomAuthController@CustomLogin')->name('login.custom'); 
 
+Route::get('/logout', 'CustomAuthController@CustomLogOut')->name('logout.custom');
+
 Route::get('/add', function () {
     return view('add');
 })->name('add');

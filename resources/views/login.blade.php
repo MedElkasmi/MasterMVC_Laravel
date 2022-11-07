@@ -11,9 +11,13 @@
 
         <form action="{{ route('login.custom')}}" method="POST">
             @csrf
+            @method('POST')
             <div class="form-group">
-                @if ($errors->has('email'))
-                  <span class="text-danger">{{ $errors->first('email') }}</span>
+                @if ($errors->has('username'))
+                  <span class="text-danger">{{ $errors->first('username') }}</span>
+                @endif
+                @if(session()->has('failed'))
+                    <div class="alert alert-danger">{{ session()->get('failed') }}</div>
                 @endif
                 <input type="text" class="form-control" id="email" placeholder="Username" name="username">
             </div>
@@ -29,7 +33,7 @@
     </div>
 
     <footer>
-        <span>Honest Media. All right reserved &copy; 2018</span>
+        <span>Honest Media. All right reserved &copy; 2018- updated @ 2022</span>
     </footer>
 
 </body>

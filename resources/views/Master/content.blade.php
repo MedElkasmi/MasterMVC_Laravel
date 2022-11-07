@@ -2,9 +2,9 @@
 
 <nav>
     <ul>
-    <li class="f-left"><a href="{{ route('home')}}">DASHBOARD</a></li>
+    <li class="f-left"><a href="{{ route('home') }}">DASHBOARD</a></li>
         <li class="f-right hidden-xs hidden-sm"> 
-            <a href="">Log out <i class="fa fa-power-off"></i></a>
+            <a href="{{ route('logout.custom') }}">Log out <i class="fa fa-power-off"></i></a>
         </li>
     </ul>
 </nav>

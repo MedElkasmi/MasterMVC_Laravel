@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class CustomAuthController extends Controller
 {
@@ -17,12 +20,20 @@ class CustomAuthController extends Controller
             'password' => 'required'
         ]);
 
-        $credentials = $request->only('username','password');
-        if(Auth::attempt($credentials)){
-            return redirect()->intended('home')->withSuccess('Signed in');
+        $admin = DB::table('admins')->where('username', '=', $request->username)->first();
+
+        if($admin && Hash::check($request->password,$admin->password)){
+            return redirect('/home');
         }
+        
+        return redirect('login')->with('failed', 'Login is invalid');
+            
+    }
 
-        return redirect('login')->withSuccess('Login details are not valid');
+    public function CustomLogOut(){
 
+        Session::flush();
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
