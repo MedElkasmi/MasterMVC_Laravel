@@ -1,17 +1,14 @@
 @include('Master.content');
 
 <div id="respond" class="container">
-    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+    <form action="" method="POST">
+        @csrf
+        @method('POST')
         <div class="form-group">
             <h1><i class="fa fa-id-card"></i> New Employee Information :</h1>
                 <h3>Nom Complet</h3>
 
-                <?php 
-                    if(isset($msglist[0]) && !is_null($msglist[0]))
-                { ?>
-                        <div class="alert alert-danger"><?php echo $msglist[0];?></div>
-                <?php }
-                ?>
+                <div class="alert alert-danger"></div>
 
                 <input type="text" class="form-control" placeholder="Nom complet" name="full_name">
                 <i class="fa fa-user"></i>
@@ -23,12 +20,9 @@
                 <br>
 
                 <h3>Numero CNSS</h3>
-                <?php 
-                    if(isset($msglist[1]) && !is_null($msglist[1]))
-                { ?>
-                        <div class="alert alert-danger"><?php echo $msglist[1];?></div>
-                <?php }
-                ?>
+
+                <div class="alert alert-danger"></div>
+
                 <input type="text" class="form-control" placeholder="N C.N.S.S" name="cnss_info">
                 <i class="fa fa-file"></i>
                 <br>
@@ -39,35 +33,26 @@
                 <br>
 
                 <h3>Email</h3> 
-                <?php 
-                    if(isset($msglist[2]) && !is_null($msglist[2]))
-                { ?>
-                        <div class="alert alert-danger"><?php echo $msglist[2];?></div>
-                <?php }
-                ?>
+
+                <div class="alert alert-danger"></div>
+
                 <input type="email" class="form-control" placeholder="Entre email" name="email">
                 <i class="fa fa-at"></i>
                 <br>
 
                 <h3>Numero Telephone</h3> 
-                <?php 
-                    if(isset($msglist[3]) && !is_null($msglist[3]))
-                { ?>
-                        <div class="alert alert-danger"><?php echo $msglist[3];?></div>
-                <?php }
-                ?>
+
+                <div class="alert alert-danger"></div>
+
                 <input type="text" class="form-control" placeholder="Entre telephone" name="phone_number">
                 <i class="fa fa-phone"></i>
                 <br>
 
             <div class="radiobox">
                 <h3>Qualification</h3>
-                <?php 
-                    if(isset($msglist[4]) && !is_null($msglist[4]))
-                { ?>
-                        <div class="alert alert-danger"><?php echo $msglist[4];?></div>
-                <?php }
-                ?>
+
+                <div class="alert alert-danger"></div>
+
                 <input type="radio" name="skills" value="TeamLeader"> TeamLeader<br>
                 <input type="radio" name="skills" value="Mailer"> Mailer<br>
                 <input type="radio" name="skills" value="Offer_Manager"> Offer Manager<br>
@@ -77,24 +62,18 @@
             <hr>
             <div class="radiobox">
                 <h3>Gender</h3>
-                <?php 
-                    if(isset($msglist[4]) && !is_null($msglist[4]))
-                { ?>
-                        <div class="alert alert-danger"><?php echo $msglist[4];?></div>
-                <?php }
-                ?>
+
+                <div class="alert alert-danger"></div>
+
                 <input type="radio" name="gender" value="Female"> Female<br>
                 <input type="radio" name="gender" value="Male"> Male<br>
             </div>
             <hr>
             <div class="radiobox">
                 <h3>Entity</h3>
-                <?php 
-                    if(isset($msglist[4]) && !is_null($msglist[4]))
-                { ?>
-                        <div class="alert alert-danger"><?php echo $msglist[4];?></div>
-                <?php }
-                ?>
+
+                <div class="alert alert-danger"></div>
+
                 <input type="radio" name="entity" value="IT TEAM"> IT TEAM<br>
                 <input type="radio" name="entity" value="Support"> Support<br>
                 <input type="radio" name="entity" value="HM1"> TEAM 1<br>

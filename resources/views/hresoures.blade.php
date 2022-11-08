@@ -17,17 +17,18 @@
         <td>Control</td>
       </tr>
 
-      <?php foreach($all as $employe): ?>
+      @foreach ($data as $employe)
+          
       <tr>
-        <td><?php echo $employe['full_name']; ?></td>
-        <td><?php echo $employe['hire_date']; ?></td>
-        <td><?php echo $employe['cnss_info']; ?></td>
-        <td><?php echo $employe['birth_date']; ?></td>
-        <td><?php echo $employe['email']; ?></td>
-        <td><?php echo $employe['phone_number']; ?></td>
-        <td><?php echo $employe['skills']; ?></td>
-        <td><?php echo $employe['gender']; ?></td>
-        <td><?php echo $employe['entity']; ?></td>
+        <td>{{ $employe->full_name }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td>
         <form method="post" action="update">
             <input type="hidden" name="id" value="<?php echo $employe['id_employe'];?>">
@@ -39,7 +40,7 @@
         </form>
         </td>
       </tr>
-      <?php endforeach; ?>
+      @endforeach
   </table>
 
       <div id="team_leader" style="display: none;"> <?php echo $team_leader['teamleader'];?> </div>

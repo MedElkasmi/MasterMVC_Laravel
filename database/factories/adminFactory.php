@@ -12,11 +12,12 @@ class adminFactory extends Factory
      *
      * @return array
      */
-    public function definition()
-    {
+    public function definition(){
+
+        // Remember password is same as username, Testing Only
         return [
-            'username' => 'admin',
-            'password' => Hash::make('admin'),
+            'username' => 'elkasmi',
+            'password' => Hash::make('elkasmi'),
         ];
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\EnsureAdminIsLogged;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,78 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home','Homecontroller@index')->name('home');
+Route::get('home','HomeController@index')->name('home');
 
-Route::get('/login','CustomAuthController@index')->name('login');
+Route::controller(CustomAuthController::class)->group(function () {
 
-Route::post('/custom-login', 'CustomAuthController@CustomLogin')->name('login.custom'); 
+    Route::get('login','index')->name('login');
+    Route::post('custom-login', 'CustomLogin')->name('login.custom')
+    ->middleware(EnsureAdminIsLogged::class); 
 
-Route::get('/logout', 'CustomAuthController@CustomLogOut')->name('logout.custom');
-
-Route::get('/add', function () {
-    return view('add');
-})->name('add');
-
-Route::get('/adminlist', function () {
-    return view('adminlist');
+    Route::get('logout','CustomLogOut')->name('logout');
 });
 
-Route::get('/admins', function () {
-    return view('admins');
-});
+Route::view('/hresoures','hresoures');
 
-Route::get('/alert', function () {
-    return view('alert');
-});
-
-Route::get('/archive', function () {
-    return view('archive');
-});
-
-Route::get('/content', function () {
-    return view('content');
-});
-
-Route::get('/delete', function () {
-    return view('delete');
-});
-
-Route::get('/footer', function () {
-    return view('footer');
-});
-
-Route::get('/header', function () {
-    return view('header');
-});
-
-Route::get('/hresoures', function () {
-    return view('hresoures');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/logout', function () {
-    return view('logout');
-});
-
-Route::get('/paymentcheck', function () {
-    return view('paymentcheck');
-});
-
-Route::get('/register', function () {
-    return view('register');
-});
-
-Route::get('/salarytracking', function () {
-    return view('salarytracking');
-});
-
-Route::get('/update', function () {
-    return view('update');
-});
-
-Route::get('/vacation', function () {
-    return view('vacation');
-});

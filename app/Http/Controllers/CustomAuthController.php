@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 class CustomAuthController extends Controller
 {
     public function index(){
+
         return view('login');
     }
 
@@ -23,7 +24,10 @@ class CustomAuthController extends Controller
         $admin = DB::table('admins')->where('username', '=', $request->username)->first();
 
         if($admin && Hash::check($request->password,$admin->password)){
-            return redirect('/home');
+
+            $request->session()->put('IsLogged',$request->username);
+
+            return redirect('home');
         }
         
         return redirect('login')->with('failed', 'Login is invalid');
@@ -32,8 +36,9 @@ class CustomAuthController extends Controller
 
     public function CustomLogOut(){
 
-        Session::flush();
-        Auth::logout();
-        return redirect()->route('login');
+        session::flush();
+        return redirect('login');
+
+
     }
 }
