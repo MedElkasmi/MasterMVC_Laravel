@@ -12,12 +12,10 @@ class EmployesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $data = employe::all();
-        return view('/hresoures')->with([
-            'employes' => $data
-        ]);
+    public function index(){
+        
+
+       
     }
 
     /**
@@ -27,7 +25,7 @@ class EmployesController extends Controller
      */
     public function create()
     {
-        
+        return view('add');
     }
 
     /**
@@ -39,12 +37,12 @@ class EmployesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'full_name' => 'required',
-            'hire_date' => 'required',
-            'cnss_info' => 'required',
-            'birth_date' => 'required',
-            'email' => 'required',
-            'phone_number' => 'required',
+            'full_name' => 'required|min:5|max:15',
+            'hire_date' => 'required|date',
+            'cnss_info' => 'required|min:5|max:15',
+            'birth_date' => 'required|date',
+            'email' => 'required|email',
+            'phone_number' => 'required|min:5|max:15',
             'skills' => 'required',
             'gender' => 'required',
             'entity' => 'required'
@@ -64,7 +62,7 @@ class EmployesController extends Controller
 
         $employe->save();
 
-        return redirect()->route('employe.hresoures')->with('Added','Employe has been added succesfully!');
+        return redirect('hresoures')->with('Added','Employe has been added succesfully!');
 
     }
 
@@ -74,9 +72,12 @@ class EmployesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $data = employe::all();
+        return view('hresoures')->with([
+            'data' => $data
+        ]);
     }
 
     /**
@@ -111,5 +112,14 @@ class EmployesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function count(){
+
+        $employes = employe::count();
+
+        return view('home')->with([
+            'employe' => $employes
+        ]);
     }
 }

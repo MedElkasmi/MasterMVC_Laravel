@@ -11,22 +11,22 @@
       <td>Action</td>
     </tr>
 
-    <?php foreach($admins as $admin): ?>
+
     <tr>
-      <td><?php echo $admin['username']; ?></td>
-      <td><?php echo $admin['created_at']; ?></td>
-      <td><?php echo $admin['created_at']; ?></td>
+      <td></td>
+      <td></td>
+      <td></td>
       <td>
       <form method="post" action="">
-          <input type="hidden" name="id" value="<?php echo $admin['id'];?>">
+          <input type="hidden" name="id" value="">
           <button>update</button>
       </form>
       <form method="post" action="">
-          <input type="hidden" name="id" value="<?php echo $admin['id'];?>">
+          <input type="hidden" name="id" value="">
           <button>delete</button>
       </form>
       </td>
     </tr>
-    <?php endforeach; ?>
+
 </table>
 </div>

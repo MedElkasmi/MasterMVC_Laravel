@@ -17,17 +17,12 @@ class EnsureAdminIsLogged
      */
     public function handle(Request $request, Closure $next){
 
-        if($request->session()->has('IsLogged')){
-
-            
-         
-        }
-        
-        else{
+        if(!$request->session()->has('IsLogged')){
 
             return  response()->view('login');
-        } 
-
+        
+        }
+        
        return $next($request);
     }
 
