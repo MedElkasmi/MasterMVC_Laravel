@@ -100,7 +100,7 @@ footer span {
 	margin-right: 16px!important;
 }
 
-nav {
+.main-nav {
 	top: 0;
     position: fixed;
 	width: 100%;
@@ -108,7 +108,7 @@ nav {
 	background-color:blueviolet;
 }
 
-nav ul {
+.main-.main-nav ul {
 	list-style-type:none;
 	margin:0;
 	padding:0;
@@ -118,20 +118,20 @@ nav ul {
 	box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
 }
 
-nav a:hover {
+.main-nav a:hover {
     text-decoration: none;
     color: white;
 }
 
-nav a:visited {
+.main-nav a:visited {
     color: white;
 }
 
-nav a:link {
+.main-nav a:link {
     text-decoration: none;
 }
 
-nav ul li a {
+.main-nav ul li a {
 	padding: 0 8px 0; 
     font-size: 20px;
     color: white;

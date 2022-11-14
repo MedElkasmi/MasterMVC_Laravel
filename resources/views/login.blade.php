@@ -1,4 +1,4 @@
-@include('Master.header')
+@include('Includes.header')
 
 <body id="login">
     <div class="leftHalf">
@@ -38,4 +38,4 @@
 
 </body>
 
-@include('Master.footer')
+@include('Includes.footer')

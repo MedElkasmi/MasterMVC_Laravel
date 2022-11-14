@@ -1,10 +1,13 @@
-@include('Master.content')
+@extends('Layouts.Master')
+
+@section('content')
 
 <div class="container manage main-table table-responsive">
   
   <div style="padding-top:70px;">
     <canvas id="myChart"></canvas>
   </div>
+
   <div id="team_leader" style="display: none;">10</div>
   <div id="mailers" style="display: none;">2</div>
   <div id="offer_manager" style="display: none;">3</div>
@@ -55,8 +58,18 @@
 
       @endforeach
       
+      
   </table>
+  <div>
+    {{ $data->links() }}
+  
+  </div>
+
 
 </div>
 
-@include('Master.footer')
+
+
+@endsection
+
+

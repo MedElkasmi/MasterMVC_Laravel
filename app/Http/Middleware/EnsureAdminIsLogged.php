@@ -19,7 +19,7 @@ class EnsureAdminIsLogged
 
         if(!$request->session()->has('IsLogged')){
 
-            return  response()->view('login');
+            return response()->view('login');
         
         }
         

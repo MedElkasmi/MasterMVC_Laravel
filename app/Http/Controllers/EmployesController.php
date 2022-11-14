@@ -74,7 +74,7 @@ class EmployesController extends Controller
      */
     public function show()
     {
-        $data = employe::all();
+        $data = employe::Paginate(6);
         return view('hresoures')->with([
             'data' => $data
         ]);

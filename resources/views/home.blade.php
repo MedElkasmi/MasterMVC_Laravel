@@ -1,5 +1,7 @@
 
-@include('Master.content')
+@extends('Layouts.Master')
+
+@section('content')
 
 <div class="container">
 <div class="options text-center">
@@ -59,4 +61,6 @@
 
 
 </div><!--container -->
+
+@endsection
 

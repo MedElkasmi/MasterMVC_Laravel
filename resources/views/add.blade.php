@@ -1,4 +1,6 @@
-@include('Master.content')
+@extends('Layouts.Master')
+
+@section('content')
 
 <div id="respond" class="container">
     <form action="{{ route('store.employe')}}" method="POST">
@@ -109,3 +111,5 @@
         <button type="submit" name="submit" class="btn btn-info">Valid</button>
     </form>
     </div>
+
+    @endsection
