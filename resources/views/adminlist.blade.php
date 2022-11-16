@@ -1,9 +1,14 @@
-@include('Master.content');
+@extends('Layouts.Master')
+
+@section('content')
 
 <div class="manage container main-table table-responsive">
 
 <table class="table table-bordered text-center">
   <h1>List of Admins</h1>
+  @if(session()->has('admin.created'))
+  <div class="alert alert-success">{{ session()->get('admin.created') }}</div>
+@endif
     <tr>
       <td>Admin</td>
       <td>email</td>
@@ -11,11 +16,12 @@
       <td>Action</td>
     </tr>
 
-
+    @foreach ($data as $admin)
+      
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{ $admin->username }}</td>
+      <td>Null</td>
+      <td>{{ $admin->created_at }}</td>
       <td>
       <form method="post" action="">
           <input type="hidden" name="id" value="">
@@ -28,5 +34,9 @@
       </td>
     </tr>
 
+    @endforeach
+
 </table>
 </div>
+
+@endsection

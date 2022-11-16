@@ -26,13 +26,13 @@ Route::controller(CustomAuthController::class)->group(function () {
 
     Route::get('logout','CustomLogOut')->name('logout');
 });
-
-
-Route::view('/hresoures','hresoures');
+    
 Route::get('hresoures','EmployesController@show')->name('hresoures');
 Route::view('/add','add')->name('create.employe');
 Route::post('employe.store','EmployesController@store')->name('store.employe');
-Route::view('/adminlist','adminlist')->name('admin.list');
 
 
+Route::get('adminlist','AdminController@index')->name('admin.list');
 
+Route::view('/register','register')->name('admin.create');
+Route::post('admin.register','AdminController@register')->name('admin.post');
