@@ -45,11 +45,15 @@
         <td>{{ $item->gender}}</td>
         <td>{{ $item->entity}}</td>
         <td>
-        <form method="post" action="update">
+        <form method="post" action="{{'employe.update',$employe->id}}">
+            @csrf
+            @method('PUT')
             <input type="hidden" name="id" value="">
             <button>update</button>
         </form>
-        <form method="post" action="delete">
+        <form method="post" action="{{'employe.destroy',$employe->id}}">
+            @csrf
+            @method('DELETE')
             <input type="hidden" name="id" value="">
             <button>delete</button>
         </form>
