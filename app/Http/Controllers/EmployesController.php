@@ -14,7 +14,10 @@ class EmployesController extends Controller
      */
     public function index(){
         
-
+        $data = employe::Paginate(6);
+        return view('hresoures')->with([
+            'data' => $data
+        ]);
        
     }
 
@@ -23,9 +26,9 @@ class EmployesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('add');
+    public function create(){
+
+        return view('employe.create');
     }
 
     /**
@@ -34,8 +37,8 @@ class EmployesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
         $request->validate([
             'full_name' => 'required|min:5|max:15',
             'hire_date' => 'required|date',
@@ -72,12 +75,11 @@ class EmployesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
-        $data = employe::Paginate(6);
-        return view('hresoures')->with([
-            'data' => $data
-        ]);
+    public function show($id){
+
+        $employe = employe::find($id);
+
+        return view('employe.show',compact('employe'));
     }
 
     /**
@@ -86,9 +88,11 @@ class EmployesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+
+        $employe = employe::find($id);
+
+        return view('employe.edit',compact('employe'));
     }
 
     /**
@@ -98,9 +102,26 @@ class EmployesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+        
+            $request->validate([
+                'full_name' => 'required|min:5|max:15',
+                'hire_date' => 'required|date',
+                'cnss_info' => 'required|min:5|max:15',
+                'birth_date' => 'required|date',
+                'email' => 'required|email',
+                'phone_number' => 'required|min:5|max:15',
+                'skills' => 'required',
+                'gender' => 'required',
+                'entity' => 'required'
+            ]);
+
+            $employe = employe::find($id);
+
+            $employe->update($request->all());
+
+        return redirect()->route('employe.index')->with('success','an ;employe has been updated successfully.');
+
     }
 
     /**
@@ -111,7 +132,10 @@ class EmployesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        employe::find($id)->delete();
+
+        return redirect()->route('employe.index')->with('success','An employe has been deleted successfully');
     }
 
     public function count(){

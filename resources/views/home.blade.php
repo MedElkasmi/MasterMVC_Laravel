@@ -7,7 +7,7 @@
 <div class="options text-center">
     <div class="row">
         <div class="col-sm-2 op" onclick="">
-            <a href="{{ route('create.employe')}}">
+            <a href="">
                 <i class="fa fa-user-plus fa-5x"></i>
                 <h3>New Employee</h3>
             </a>
@@ -31,7 +31,7 @@
             </a>
         </div>
         <div class="col-sm-3 op">
-            <a href="{{route('hresoures')}}">
+            <a href="">
                 <i class="fa fa-database fa-5x"></i>
                 <h3>Human Resources</h3>
             </a>
