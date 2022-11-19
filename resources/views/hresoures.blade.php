@@ -45,17 +45,16 @@
         <td>{{ $item->gender}}</td>
         <td>{{ $item->entity}}</td>
         <td>
-        <form method="post" action="{{'employe.update',$employe->id}}">
+
+        <form method="GET" action="{{route('employe.edit',$item)}}">
             @csrf
-            @method('PUT')
-            <input type="hidden" name="id" value="">
-            <button>update</button>
+            <button type="submit">Update</button>
         </form>
-        <form method="post" action="{{'employe.destroy',$employe->id}}">
+
+        <form method="POST" action="{{route('employe.destroy',$item->id)}}">
             @csrf
             @method('DELETE')
-            <input type="hidden" name="id" value="">
-            <button>delete</button>
+            <button type="submit">delete</button>
         </form>
         </td>
       </tr>

@@ -18,7 +18,7 @@ use App\Http\Controllers\EmployesController;
 
 
 Route::get('/home','HomeController@index')->name('home')->middleware(EnsureAdminIsLogged::class);
-Route::get('/home','EmployesController@count');
+
 
 Route::controller(CustomAuthController::class)->group(function () {
 
@@ -28,7 +28,7 @@ Route::controller(CustomAuthController::class)->group(function () {
     Route::get('logout','CustomLogOut')->name('logout');
 });
     
-Route::resource('employe',EmployesController::class);
+Route::resource('employe',EmployeController::class);
 
 
 Route::get('adminlist','AdminController@index')->name('admin.list');

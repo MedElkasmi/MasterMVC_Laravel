@@ -31,7 +31,7 @@
             </a>
         </div>
         <div class="col-sm-3 op">
-            <a href="">
+            <a href="{{ route('employe.index')}}">
                 <i class="fa fa-database fa-5x"></i>
                 <h3>Human Resources</h3>
             </a>
