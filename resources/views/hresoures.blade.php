@@ -16,9 +16,19 @@
 
   <table class="table table-bordered text-center">
     <h1>List of Employes</h1>
+
     @if(session()->has('Added'))
       <div class="alert alert-success">{{ session()->get('Added') }}</div>
     @endif
+
+    @if(session()->has('updated'))
+      <div class="alert alert-success">{{ session()->get('updated') }}</div>
+    @endif
+
+    @if(session()->has('deleted'))
+      <div class="alert alert-danger">{{ session()->get('deleted') }}</div>
+    @endif
+
       <tr>
         <td>Full Name</td>
         <td>Start date</td>

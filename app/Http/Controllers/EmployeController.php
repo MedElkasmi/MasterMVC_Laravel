@@ -29,7 +29,7 @@ class EmployeController extends Controller
     public function create()
     {
         //
-        return view('employe.create');
+        return view('add');
     }
 
     /**
@@ -67,7 +67,7 @@ class EmployeController extends Controller
 
         $employe->save();
 
-        return redirect('hresoures')->with('Added','Employe has been added succesfully!');
+        return redirect()->route('employe.index')->with('Added','Employe has been added succesfully!');
     }
 
     /**
@@ -106,21 +106,21 @@ class EmployeController extends Controller
     public function update(Request $request, Employe $employe)
     {
         //
-        // $request->validate([
-        //     'full_name' => 'required|min:5|max:15',
-        //     'hire_date' => 'required|date',
-        //     'cnss_info' => 'required|min:5|max:15',
-        //     'birth_date' => 'required|date',
-        //     'email' => 'required|email',
-        //     'phone_number' => 'required|min:5|max:15',
-        //     'skills' => 'required',
-        //     'gender' => 'required',
-        //     'entity' => 'required'
-        // ]);
+        $request->validate([
+            'full_name' => 'required|min:5|max:15',
+            'hire_date' => 'required|date',
+            'cnss_info' => 'required|min:5|max:15',
+            'birth_date' => 'required|date',
+            'email' => 'required|email',
+            'phone_number' => 'required|min:5|max:15',
+            'skills' => 'required',
+            'gender' => 'required',
+            'entity' => 'required'
+        ]);
 
         $employe->update($request->all());
 
-    return redirect()->route('home')->with('success','an employe has been updated successfully.');
+    return redirect()->route('employe.index')->with('updated','an employe has been updated successfully.');
     }
 
     /**
@@ -134,6 +134,6 @@ class EmployeController extends Controller
         //
         $employe->delete();
 
-        return redirect()->route('employe.index')->with('success','An employe has been deleted successfully');
+        return redirect()->route('employe.index')->with('deleted','An employe has been deleted successfully');
     }
 }
