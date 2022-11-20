@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\EnsureAdminIsLogged;
+use App\Http\Controllers\EmployesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Middleware\EnsureAdminIsLogged;
 
 
 Route::get('/home','HomeController@index')->name('home')->middleware(EnsureAdminIsLogged::class);
-Route::get('/home','EmployesController@count');
+
 
 Route::controller(CustomAuthController::class)->group(function () {
 
@@ -27,9 +28,7 @@ Route::controller(CustomAuthController::class)->group(function () {
     Route::get('logout','CustomLogOut')->name('logout');
 });
     
-Route::get('hresoures','EmployesController@show')->name('hresoures');
-Route::view('/add','add')->name('create.employe');
-Route::post('employe.store','EmployesController@store')->name('store.employe');
+Route::resource('employe',EmployeController::class);
 
 
 Route::get('adminlist','AdminController@index')->name('admin.list');

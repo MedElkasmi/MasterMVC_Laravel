@@ -41,9 +41,5 @@ class AdminController extends Controller
 
         return redirect('register')->with('password.wrong','Password does not match');
 
-
-
-
-
     }
 }

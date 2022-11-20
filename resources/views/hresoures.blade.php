@@ -16,9 +16,19 @@
 
   <table class="table table-bordered text-center">
     <h1>List of Employes</h1>
+
     @if(session()->has('Added'))
       <div class="alert alert-success">{{ session()->get('Added') }}</div>
     @endif
+
+    @if(session()->has('updated'))
+      <div class="alert alert-success">{{ session()->get('updated') }}</div>
+    @endif
+
+    @if(session()->has('deleted'))
+      <div class="alert alert-danger">{{ session()->get('deleted') }}</div>
+    @endif
+
       <tr>
         <td>Full Name</td>
         <td>Start date</td>
@@ -45,13 +55,16 @@
         <td>{{ $item->gender}}</td>
         <td>{{ $item->entity}}</td>
         <td>
-        <form method="post" action="update">
-            <input type="hidden" name="id" value="">
-            <button>update</button>
+
+        <form method="GET" action="{{route('employe.edit',$item)}}">
+            @csrf
+            <button type="submit">Update</button>
         </form>
-        <form method="post" action="delete">
-            <input type="hidden" name="id" value="">
-            <button>delete</button>
+
+        <form method="POST" action="{{route('employe.destroy',$item->id)}}">
+            @csrf
+            @method('DELETE')
+            <button type="submit">delete</button>
         </form>
         </td>
       </tr>

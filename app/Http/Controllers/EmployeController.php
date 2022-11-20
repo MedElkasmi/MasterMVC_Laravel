@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\employe;
+use App\Models\Employe;
 use Illuminate\Http\Request;
 
-class EmployesController extends Controller
+class EmployeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        
-
-       
+    public function index()
+    {
+        //
+        $data = employe::Paginate(6);
+        return view('hresoures')->with([
+            'data' => $data
+        ]);
     }
 
     /**
@@ -25,6 +28,7 @@ class EmployesController extends Controller
      */
     public function create()
     {
+        //
         return view('add');
     }
 
@@ -36,6 +40,7 @@ class EmployesController extends Controller
      */
     public function store(Request $request)
     {
+        //
         $request->validate([
             'full_name' => 'required|min:5|max:15',
             'hire_date' => 'required|date',
@@ -62,64 +67,73 @@ class EmployesController extends Controller
 
         $employe->save();
 
-        return redirect('hresoures')->with('Added','Employe has been added succesfully!');
-
+        return redirect()->route('employe.index')->with('Added','Employe has been added succesfully!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Employe  $employe
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Employe $employe)
     {
-        $data = employe::Paginate(6);
-        return view('hresoures')->with([
-            'data' => $data
-        ]);
+        //
+        $employe = employe::find($employe);
+
+        return view('employe.show',compact('employe'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Employe  $employe
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employe $employe)
     {
         //
+        return view('edit',compact('employe'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Employe  $employe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Employe $employe)
     {
         //
+        $request->validate([
+            'full_name' => 'required|min:5|max:15',
+            'hire_date' => 'required|date',
+            'cnss_info' => 'required|min:5|max:15',
+            'birth_date' => 'required|date',
+            'email' => 'required|email',
+            'phone_number' => 'required|min:5|max:15',
+            'skills' => 'required',
+            'gender' => 'required',
+            'entity' => 'required'
+        ]);
+
+        $employe->update($request->all());
+
+    return redirect()->route('employe.index')->with('updated','an employe has been updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Employe  $employe
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employe $employe)
     {
         //
-    }
+        $employe->delete();
 
-    public function count(){
-
-        $employes = employe::count();
-
-        return view('home')->with([
-            'employe' => $employes
-        ]);
+        return redirect()->route('employe.index')->with('deleted','An employe has been deleted successfully');
     }
 }
