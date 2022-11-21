@@ -55,17 +55,17 @@
         <td>{{ $item->gender}}</td>
         <td>{{ $item->entity}}</td>
         <td>
-
-        <form method="GET" action="{{route('employe.edit',$item)}}">
+          <form method="GET" action="{{route('employe.edit',$item)}}">
             @csrf
             <button type="submit">Update</button>
         </form>
-
+        
         <form method="POST" action="{{route('employe.destroy',$item->id)}}">
             @csrf
             @method('DELETE')
             <button type="submit">delete</button>
         </form>
+
         </td>
       </tr>
 

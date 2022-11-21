@@ -9,7 +9,7 @@
     <div class="righthalf">
         <h1 style="text-align:center;margin-top:32%;"><i class="fa fa-dashboard"></i> Add New Admin</h1>
 
-        <form action="{{ route('admin.post')}}" method="POST">
+        <form action="{{route('admin.store')}}" method="POST">
             @csrf
             @method('POST')
             <div class="form-group">

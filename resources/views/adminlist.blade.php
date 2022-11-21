@@ -6,9 +6,14 @@
 
 <table class="table table-bordered text-center">
   <h1>List of Admins</h1>
+
   @if(session()->has('admin.created'))
-  <div class="alert alert-success">{{ session()->get('admin.created') }}</div>
-@endif
+    <div class="alert alert-success">{{ session()->get('admin.created') }}</div>
+  @endif
+
+  @if(session()->has('deleted'))
+    <div class="alert alert-danger">{{ session()->get('deleted') }}</div>
+  @endif
     <tr>
       <td>Admin</td>
       <td>email</td>
@@ -23,13 +28,15 @@
       <td>Null</td>
       <td>{{ $admin->created_at }}</td>
       <td>
-      <form method="post" action="">
-          <input type="hidden" name="id" value="">
-          <button>update</button>
+        <form method="GET" action="{{route('admin.edit',$admin)}}">
+          @csrf
+          <button type="submit">Update</button>
       </form>
-      <form method="post" action="">
-          <input type="hidden" name="id" value="">
-          <button>delete</button>
+      
+      <form method="POST" action="{{route('admin.destroy',$admin->id)}}">
+          @csrf
+          @method('DELETE')
+          <button type="submit">delete</button>
       </form>
       </td>
     </tr>
