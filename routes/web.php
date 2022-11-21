@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\EnsureAdminIsLogged;
-use App\Http\Controllers\EmployesController;
+use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,14 +25,9 @@ Route::controller(CustomAuthController::class)->group(function () {
 
     Route::get('login','index')->name('login');
     Route::post('custom-login', 'CustomLogin')->name('login.custom');
-
     Route::get('logout','CustomLogOut')->name('logout');
 });
     
 Route::resource('employe',EmployeController::class);
 
-
-Route::get('adminlist','AdminController@index')->name('admin.list');
-
-Route::view('/register','register')->name('admin.create');
-Route::post('admin.register','AdminController@register')->name('admin.post');
+Route::resource('admin',AdminController::class);

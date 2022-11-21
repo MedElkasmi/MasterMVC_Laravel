@@ -1,10 +1,14 @@
+@extends('Layouts.Master')
+
+@section('content')
+
 <div style="padding-top:70px;" class="container holidays">
     <canvas id="VacationChart"></canvas>
   </div>
   
   <div class="container holidays">
     
-    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" class="form-group">
+    <form action="" method="POST" class="form-group">
     <h2>Parameters :</h2>
         <h4>Duration :</h4>
         <div class="form-group">
@@ -36,16 +40,18 @@
                 <td>Control</td>
             </tr>
   
-        <?php foreach($data as $value): ?>
+
             <tr>
-              <td><?php echo $value['employe_name']; ?></td>
-              <td><?php echo $value['vacation_start']; ?></td>
-              <td><?php echo $value['vacation_end']; ?></td>
-              <td><?php echo $value['vacation_estimated']; ?></td>
-              <td><?php echo $value['days_available']; ?></td>
-              <td><?php echo $value['vacation_status']; ?></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td>Action</td>
             </tr>
-            <?php endforeach; ?>
+
     </table>
   </div>
+
+  @endsection

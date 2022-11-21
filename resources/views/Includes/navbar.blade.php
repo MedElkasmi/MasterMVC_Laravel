@@ -11,7 +11,7 @@
     <div class="links">
         <a href="" class="active"><i class="fa fa-cog"></i> Setting</a>
         <a href="{{route('admin.create')}}"><i class="fa fa-user-circle"></i> Create Admin</a>
-        <a href="{{route('admin.list')}}"><i class="fa fa-users"></i> List of admins</a>
+        <a href="{{route('admin.index')}}"><i class="fa fa-users"></i> List of admins</a>
         <a href=""><i class="fa fa-globe"></i> Langaugaes</a>
     </div>
     <i class="fa fa-gear"></i>

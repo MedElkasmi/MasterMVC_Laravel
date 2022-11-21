@@ -15,7 +15,7 @@ class EmployeController extends Controller
     public function index()
     {
         //
-        $data = employe::Paginate(6);
+        $data = Employe::Paginate(6);
         return view('hresoures')->with([
             'data' => $data
         ]);
@@ -53,7 +53,7 @@ class EmployeController extends Controller
             'entity' => 'required'
         ]);
 
-        $employe = new employe();
+        $employe = new Employe();
 
         $employe->full_name = $request->full_name;
         $employe->hire_date = $request->hire_date;
@@ -79,7 +79,7 @@ class EmployeController extends Controller
     public function show(Employe $employe)
     {
         //
-        $employe = employe::find($employe);
+        $employe = Employe::find($employe);
 
         return view('employe.show',compact('employe'));
     }
