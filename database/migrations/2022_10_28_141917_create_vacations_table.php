@@ -13,9 +13,9 @@ class CreateVacationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vacations', function (Blueprint $table) {
+        Schema::create('Vacations', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_employe');
+            $table->foreignId('id')->constrained();
             $table->string('employe_name');
             $table->date('vacation_start');
             $table->date('vacation_end');

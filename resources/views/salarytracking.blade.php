@@ -1,5 +1,11 @@
+@extends('Layouts.Master')
+
+@section('content')
+
 <div class="container history">
-    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+    <form action="" method="POST">
+        @csrf
+        @method('POST')
         <h2>Parameters :</h2>
         <h4>Choose an employee to add following informations :</h4>
         <input type="text" name="history">
@@ -10,19 +16,29 @@
         <input type="submit" value="Add To List"><br><br>
     </form>
     <table class="table table-bordered text-center">
-        <thead>
         <tr>
             <td>Employee</td>
             <td>Skills</td>
             <td>Entity</td>
-            <td>Date_upgrade</td>
-            <td>Salaire_Brut</td>
-            <td>Salaire_Net</td>
+            <td>Upgrade Date</td>
+            <td>Salaire Brut</td>
+            <td>Salaire Net</td>
             <td>Control</td>
         </tr>
-        </thead>    
+  
         <tr>
-            
+            <td>Med</td>
+            <td>IT</td>
+            <td>IT</td>
+            <td>2020/10/10</td>
+            <td>4100</td>
+            <td>3900</td>
+            <td>
+
+            </td>
         </tr>
     </table>
+
 </div>
+
+@endsection

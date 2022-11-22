@@ -9,6 +9,8 @@
   <div class="container holidays">
     
     <form action="" method="POST" class="form-group">
+      @csrf
+      @method('POST')
     <h2>Parameters :</h2>
         <h4>Duration :</h4>
         <div class="form-group">
@@ -52,6 +54,8 @@
             </tr>
 
     </table>
+
+
   </div>
 
   @endsection

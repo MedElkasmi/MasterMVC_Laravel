@@ -13,9 +13,9 @@ class CreateSalariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('salaries', function (Blueprint $table) {
-            $table->id('id_salary');
-            $table->integer('id_employe');
+        Schema::create('Salaries', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id')->constrained();
             $table->string('employe_name');
             $table->string('employe_skills');
             $table->string('employe_entity');

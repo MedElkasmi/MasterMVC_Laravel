@@ -13,8 +13,8 @@ class CreateEmployesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employes', function (Blueprint $table) {
-            $table->id('id_employe');
+        Schema::create('Employes', function (Blueprint $table) {
+            $table->id();
             $table->string('full_name');
             $table->date('hire_date');
             $table->integer('cnss_info');

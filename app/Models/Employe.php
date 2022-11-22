@@ -20,4 +20,14 @@ class Employe extends Model
         'gender',
         'entity',
     ];
+
+    public function vacation(){
+
+        return $this->HasMany(Vacation::class);
+    }
+
+    public function salary(){
+
+        return $this->HasMany(Salary::class);
+    }
 }

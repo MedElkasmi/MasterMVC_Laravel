@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Vacation extends Model
 {
     use HasFactory;
+
+    public function employe(){
+
+        return $this->belongsTo(Employe::class);
+    }
 }
