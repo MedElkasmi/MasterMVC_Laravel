@@ -26,8 +26,4 @@ class Employe extends Model
         return $this->HasMany(Vacation::class);
     }
 
-    public function salary(){
-
-        return $this->HasMany(Salary::class);
-    }
 }

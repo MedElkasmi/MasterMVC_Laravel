@@ -15,7 +15,8 @@ class CreateVacationsTable extends Migration
     {
         Schema::create('Vacations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id')->constrained();
+            $table->unsignedBigInteger('employe_id');
+            $table->foreign('employe_id')->references('id')->on('Employes');
             $table->string('employe_name');
             $table->date('vacation_start');
             $table->date('vacation_end');
