@@ -25,19 +25,19 @@
       
     <tr>
       <td>{{ $admin->username }}</td>
-      <td>Null</td>
+      <td>{{ $admin->email }}</td>
       <td>{{ $admin->created_at }}</td>
       <td>
         <form method="GET" action="{{route('admin.edit',$admin)}}">
           @csrf
           <button type="submit">Update</button>
-      </form>
+        </form>
       
-      <form method="POST" action="{{route('admin.destroy',$admin->id)}}">
+        <form method="POST" action="{{route('admin.destroy',$admin->id)}}">
           @csrf
           @method('DELETE')
           <button type="submit">delete</button>
-      </form>
+        </form>
       </td>
     </tr>
 

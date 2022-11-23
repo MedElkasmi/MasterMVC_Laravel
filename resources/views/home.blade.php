@@ -43,7 +43,7 @@
             </a>
         </div>
         <div class="col-sm-2 op">
-            <a href="{{ route('salary.index')}}">
+            <a href="{{ route('salary.create')}}">
                 <i class="fa fa-address-card fa-5x"></i>
                 <h3>Salary History</h3>
             </a>

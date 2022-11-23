@@ -3,12 +3,12 @@
 @section('content')
 
 <div class="container history">
-    <form action="" method="POST">
+    <form action="{{route('salary.store')}}" method="POST">
         @csrf
         @method('POST')
         <h2>Parameters :</h2>
         <h4>Choose an employee to add following informations :</h4>
-        <input type="text" name="history">
+        <input type="text" name="employe_name">
         <br><br>
         <h4>Add salaire brut $:</h4>
         <h6>(Leave blank if not require)</h6>
@@ -34,7 +34,16 @@
             <td>4100</td>
             <td>3900</td>
             <td>
-
+                <form method="GET" action="">
+                    @csrf
+                    <button type="submit">Update</button>
+                  </form>
+                
+                  <form method="POST" action="">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                  </form>
             </td>
         </tr>
     </table>

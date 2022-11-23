@@ -21,9 +21,14 @@ class Employe extends Model
         'entity',
     ];
 
-    public function vacation(){
+    public function vacations(){
 
-        return $this->HasMany(Vacation::class);
+        return $this->hasMany(Vacation::class);
+    }
+
+    public function salaries(){
+
+        return $this->hasMany(Salary::class);
     }
 
 }

@@ -17,12 +17,12 @@ class CreateSalariesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('employe_id');
             $table->foreign('employe_id')->references('id')->on('Employes');
-            $table->string('employe_name');
-            $table->string('employe_skills');
-            $table->string('employe_entity');
-            $table->date('salary_upgrade');
-            $table->double('salary_brut');
-            $table->double('salary_net');
+            $table->string('employe_name')->nullable();
+            $table->string('employe_skills')->nullable();
+            $table->string('employe_entity')->nullable();
+            $table->date('salary_upgrade')->nullable();
+            $table->double('salary_brut')->nullable();
+            $table->double('salary_net')->nullable();
             $table->timestamps();
         });
     }
