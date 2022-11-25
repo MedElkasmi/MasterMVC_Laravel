@@ -3,6 +3,7 @@
     <script src="{{ asset('js/plugin.js') }}"></script>
     <script src="{{ asset('js/charts_employes.js') }}"></script>
     <script src="{{ asset('js/charts_vacation.js') }}"></script>
+    <script src="{{ asset('js/charts_salary.js') }}"></script>
 
     </body>
 </html>

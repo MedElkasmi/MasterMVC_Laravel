@@ -2,6 +2,10 @@
 
 @section('content')
 
+<div style="padding-top:70px;" class="container history">
+    <canvas id="SalaryChart"></canvas>
+</div>
+
 <div class="container history">
     <form action="{{route('salary.store')}}" method="POST">
         @csrf
@@ -15,6 +19,15 @@
         <input type="text" name="sbrut">
         <input type="submit" value="Add To List"><br><br>
     </form>
+
+    @if(session()->has('Salary.added'))
+        <div class="alert alert-success">{{ session()->get('Salary.added') }}</div>
+    @endif
+
+    @if(session()->has('Salary.notfound'))
+        <div class="alert alert-danger">{{ session()->get('Salary.notfound') }}</div>
+    @endif
+
     <table class="table table-bordered text-center">
         <tr>
             <td>Employee</td>
@@ -25,14 +38,14 @@
             <td>Salaire Net</td>
             <td>Control</td>
         </tr>
-  
+
         <tr>
-            <td>Med</td>
-            <td>IT</td>
-            <td>IT</td>
-            <td>2020/10/10</td>
-            <td>4100</td>
-            <td>3900</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td>
                 <form method="GET" action="">
                     @csrf

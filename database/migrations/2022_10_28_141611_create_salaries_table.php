@@ -23,6 +23,7 @@ class CreateSalariesTable extends Migration
             $table->date('salary_upgrade')->nullable();
             $table->double('salary_brut')->nullable();
             $table->double('salary_net')->nullable();
+            $table->string('token',100)->nullable();
             $table->timestamps();
         });
     }

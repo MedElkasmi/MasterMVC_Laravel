@@ -24,6 +24,7 @@ class CreateVacationsTable extends Migration
             $table->string('vacation_estimated');
             $table->string('days_available');
             $table->string('vacation_status');
+            $table->string('token',100)->nullable();
             $table->timestamps();
         });
     }

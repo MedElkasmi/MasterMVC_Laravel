@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Salary;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -37,61 +38,40 @@ class SalaryController extends Controller
      */
     public function store(Request $request)
     {
-        // $salary = Salary::first();
-
-        // if(is_null($salary)) {
-            
-        //     $request->validate([
-        //         'employe_name' => 'required|min:5|max:15',
-        //         'sbrut' => 'required|min:4|max:10',
-        //     ]);
-
-        //     Salary::create([
-        //         'employe_id' => 1,
-        //         'employe_name' => NUll,
-        //         'employe_skills' => NUll,
-        //         'employe_entity' => NUll,
-        //         'salary_upgrade' => NUll,
-        //         'salary_brut' => NUll,
-        //         'salary_net' => NUll,
-        //     ]);
-        // }
-
-        //====================================================================
+        $employe = DB::table('employes')->where('full_name',$request->employe_name)->first();
+        $salary = DB::table('salaries')->where('employe_name',$request->employe_name)->first();
         
-        $data = DB::table('Employes')->select('id','hire_date')->where('full_name','user-7354')->fisrt();
+        if($employe) {
 
-        return $data;
+            $data = [
+                'salaryBrut' => $request->sbrut,
+                'salaryNet' => NULL,
+            ];
 
-        // $employe = Salary::find(2)->employe;
+            $salaryNet = $data['salaryBrut'] - 200;
+            data_set($data, 'salaryNet', $salaryNet);
 
-        // return $employe;
+            Salary::create([
+                'employe_id' => $employe->id,
+                'employe_name' => $employe->full_name,
+                'employe_skills' => $employe->skills,
+                'employe_entity' => $employe->entity,
+                'salary_upgrade' => date('Y-m-d'),
+                'salary_brut' => $data['salaryBrut'],
+                'salary_net' => $data['salaryNet'],
+                'token' => Str::random(10),
+            ]);
 
-        // $data = [
-        //     'salaryBrut' => $request->sbrut,
-        //     'salaryNet' => NULL,
-        // ];
 
-        // $salaryNet = $data['salaryBrut'] - 200;
+            return redirect()->route('salary.create')
+            ->with('Salary.added','Tracking salary for employe {'. $employe->full_name .'} has been added succesfully!');
+        }
 
-        // data_set($data, 'salaryNet', $salaryNet);
+        else {
 
-        // $request->validate([
-        //     'employe_name' => 'required|min:5|max:15',
-        //     'sbrut' => 'required|min:4|max:10',
-        //     ]);
-
-        // Salary::create([
-        //     'employe_id' => $employe['id'],
-        //     'employe_name' => $employe['full_name'],
-        //     'employe_skills' => $employe['skills'],
-        //     'employe_entity' => $employe['entity'],
-        //     'salary_upgrade' => $employe['created_at'],
-        //     'salary_brut' => $data['salaryBrut'],
-        //     'salary_net' => $data['salaryNet'],
-        // ]);
-
-        
+            return redirect()->route('salary.create')
+            ->with('Salary.notfound','Employe {'. $request->employe_name .'} was not found');
+        }
     }
 
     /**
@@ -102,7 +82,9 @@ class SalaryController extends Controller
      */
     public function show(Salary $salary)
     {
-        //
+        $salary = Employe::find($salary);
+
+        return view('salary.show',compact('salary'));
     }
 
     /**

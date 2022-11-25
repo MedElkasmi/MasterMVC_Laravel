@@ -17,6 +17,7 @@ class Salary extends Model
         'salary_upgrade',
         'salary_brut',
         'salary_net',
+        'token',
     ];
 
     public function employe(){
