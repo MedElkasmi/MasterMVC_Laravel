@@ -13,15 +13,17 @@ class CreateSalariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('salaries', function (Blueprint $table) {
-            $table->id('id_salary');
-            $table->integer('id_employe');
-            $table->string('employe_name');
-            $table->string('employe_skills');
-            $table->string('employe_entity');
-            $table->date('salary_upgrade');
-            $table->double('salary_brut');
-            $table->double('salary_net');
+        Schema::create('Salaries', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('employe_id');
+            $table->foreign('employe_id')->references('id')->on('Employes');
+            $table->string('employe_name')->nullable();
+            $table->string('employe_skills')->nullable();
+            $table->string('employe_entity')->nullable();
+            $table->date('salary_upgrade')->nullable();
+            $table->double('salary_brut')->nullable();
+            $table->double('salary_net')->nullable();
+            $table->string('token',100)->nullable();
             $table->timestamps();
         });
     }

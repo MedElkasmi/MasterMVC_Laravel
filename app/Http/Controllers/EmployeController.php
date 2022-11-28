@@ -67,6 +67,7 @@ class EmployeController extends Controller
 
         $employe->save();
 
+
         return redirect()->route('employe.index')->with('Added','Employe has been added succesfully!');
     }
 

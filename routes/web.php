@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\EnsureAdminIsLogged;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\VacationController;
+use App\Http\Controllers\SalaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +33,13 @@ Route::controller(CustomAuthController::class)->group(function () {
 Route::resource('employe',EmployeController::class);
 
 Route::resource('admin',AdminController::class);
+
+Route::resource('vacation',VacationController::class);
+
+Route::resource('salary',SalaryController::class);
+
+//Route::get('salaryinfo','SalaryController@getSalaryInfo');
+//Route::post('salarycalc','SalaryController@getSalaryInfo')->name('calc');
+
+//Route::view('vacation', 'vacation');
+//Route::view('salary', 'salarytracking');

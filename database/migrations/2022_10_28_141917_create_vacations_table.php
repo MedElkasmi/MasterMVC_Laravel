@@ -13,9 +13,10 @@ class CreateVacationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vacations', function (Blueprint $table) {
+        Schema::create('Vacations', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_employe');
+            $table->unsignedBigInteger('employe_id');
+            $table->foreign('employe_id')->references('id')->on('Employes');
             $table->string('employe_name');
             $table->date('vacation_start');
             $table->date('vacation_end');
@@ -23,6 +24,7 @@ class CreateVacationsTable extends Migration
             $table->string('vacation_estimated');
             $table->string('days_available');
             $table->string('vacation_status');
+            $table->string('token',100)->nullable();
             $table->timestamps();
         });
     }

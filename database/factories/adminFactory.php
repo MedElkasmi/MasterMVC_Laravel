@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
-class adminFactory extends Factory
+class AdminFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,6 +18,7 @@ class adminFactory extends Factory
         return [
             'username' => 'elkasmi',
             'password' => Hash::make('elkasmi'),
+            'email' => $this->faker->email(),
         ];
     }
 }

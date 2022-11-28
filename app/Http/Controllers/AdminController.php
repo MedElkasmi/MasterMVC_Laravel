@@ -53,7 +53,7 @@ class AdminController extends Controller
         
         if($request->password == $request->repassword) {
 
-            admin::create([
+            Admin::create([
                 'username' => $request->username,
                 'password' => Hash::make($request->password)
             ]);
