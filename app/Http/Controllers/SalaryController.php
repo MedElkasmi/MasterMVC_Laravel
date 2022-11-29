@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class SalaryController extends Controller
 {
@@ -39,7 +40,6 @@ class SalaryController extends Controller
     public function store(Request $request)
     {
         $employe = DB::table('employes')->where('full_name',$request->employe_name)->first();
-        $salary = DB::table('salaries')->where('employe_name',$request->employe_name)->first();
         
         if($employe) {
 
@@ -56,7 +56,7 @@ class SalaryController extends Controller
                 'employe_name' => $employe->full_name,
                 'employe_skills' => $employe->skills,
                 'employe_entity' => $employe->entity,
-                'salary_upgrade' => date('Y-m-d'),
+                'salary_upgrade' => carbon::now(),
                 'salary_brut' => $data['salaryBrut'],
                 'salary_net' => $data['salaryNet'],
                 'token' => Str::random(10),

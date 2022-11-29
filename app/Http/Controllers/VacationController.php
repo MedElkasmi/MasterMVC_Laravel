@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Vacation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class VacationController extends Controller
 {
@@ -14,7 +18,7 @@ class VacationController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -25,6 +29,10 @@ class VacationController extends Controller
     public function create()
     {
         //
+        $data = Vacation::where('vacation_status','Active')->paginate(6);
+        return view('vacation')->with([
+            'data' => $data
+        ]);
     }
 
     /**
@@ -35,20 +43,30 @@ class VacationController extends Controller
      */
     public function store(Request $request)
     {
-        //
-         $data = [
-            'employe_name' => $request->employe_name,
-            'vacation_end' => null,
-            'vacation_diff' => null,
-            'vacation_estimated' => null,
-            'vacation_status' => null,
-            'remove_sigh' => null,
-            'remove_day' => null,
-            'duration' => null,
-            'days_available' => null
-        ];
 
-        
+        $employe = DB::table('employes')->where('full_name',$request->employe_name)->first();
+
+        if($employe){
+
+                vacation::create([
+                    'employe_id' => $employe->id,
+                    'employe_name' => $request->employe_name,
+                    'vacation_start' => carbon::now(),
+                    'vacation_end' => carbon::now()->addDays($request->duration),
+                    'vacation_pointer' => carbon::now(),
+                    'days_available' => $request->days_available,
+                    'vacation_status' => 'Active',
+                ]);
+
+                return redirect()->route('vacation.create')
+                ->with('vacation.added','Vacation has been set up for employe : ' . $request->employe_name);
+            }
+
+            else {
+
+                return redirect()->route('vacation.create')
+                ->with('vacation.notfound','Employe {'. $request->employe_name .'} was not found');
+            }
     }
 
     /**
@@ -94,5 +112,8 @@ class VacationController extends Controller
     public function destroy(Vacation $vacation)
     {
         //
+        $vacation->delete();
+
+        return redirect()->route('vacation.create')->with('Vacation.Cancelled','Vacation planning has been cancelled.');
     }
 }

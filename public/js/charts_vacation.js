@@ -3,11 +3,10 @@
 
 
   const vacation = [
-    'Day 10',
-    'Day 20',
-    'Day 30',
-    'Day 40',
-    'Day 50'
+    'user 1',
+    'user 2',
+    'user 3',
+    'user 4',
   ];
 
   //Data 
@@ -15,7 +14,7 @@
     labels: vacation,
     datasets: [{
       label: 'Vacation Data',
-      data: [0, 10, 5, 2, 20, 2, 6],
+      data: [15, 10, 5, 2],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -37,13 +36,16 @@
   };
 
   //config
-  const VacationConfig = {
-    type: 'line',
+const VacationConfig = {
+    type: 'bar',
     data: VacationData,
-    options: {  
-      responsive: true,
-      maintainAspectRatio: false
-  }
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
   };
 
   //View

@@ -17,14 +17,12 @@ class CreateVacationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('employe_id');
             $table->foreign('employe_id')->references('id')->on('Employes');
-            $table->string('employe_name');
-            $table->date('vacation_start');
-            $table->date('vacation_end');
-            $table->date('vacation_pointer');
-            $table->string('vacation_estimated');
-            $table->string('days_available');
-            $table->string('vacation_status');
-            $table->string('token',100)->nullable();
+            $table->string('employe_name')->nullable();
+            $table->date('vacation_start')->nullable();
+            $table->date('vacation_end')->nullable();
+            $table->date('vacation_pointer')->nullable();
+            $table->string('days_available')->nullable();
+            $table->string('vacation_status')->nullable();
             $table->timestamps();
         });
     }
