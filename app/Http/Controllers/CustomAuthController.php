@@ -16,6 +16,7 @@ class CustomAuthController extends Controller
     }
 
     public function CustomLogin(Request $request){
+        
         $request->validate([
             'username' => 'required',
             'password' => 'required'

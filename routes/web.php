@@ -37,9 +37,3 @@ Route::resource('admin',AdminController::class);
 Route::resource('vacation',VacationController::class);
 
 Route::resource('salary',SalaryController::class);
-
-//Route::get('salaryinfo','SalaryController@getSalaryInfo');
-//Route::post('salarycalc','SalaryController@getSalaryInfo')->name('calc');
-
-//Route::view('vacation', 'vacation');
-//Route::view('salary', 'salarytracking');

@@ -25,7 +25,7 @@
             </a>
         </div>
         <div class="col-sm-2 op">
-            <a href="">
+            <a href="{{ route('vacation.create')}}">
                 <i class="fa fa-file fa-5x"></i>
                 <h3>Holidays</h3>
             </a>
