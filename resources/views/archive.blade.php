@@ -1,4 +1,6 @@
-@include('Master.content');
+@extends('Layouts.Master')
+
+@section('content')
 
 <div class="manage container main-table table-responsive">
 
@@ -17,28 +19,29 @@
         <td>Control</td>
       </tr>
 
-      <?php foreach($deleted as $deleted_employe): ?>
       <tr>
-        <td><?php echo $deleted_employe['full_name']; ?></td>
-        <td><?php echo $deleted_employe['hire_date']; ?></td>
-        <td><?php echo $deleted_employe['cnss_info']; ?></td>
-        <td><?php echo $deleted_employe['birth_date']; ?></td>
-        <td><?php echo $deleted_employe['email']; ?></td>
-        <td><?php echo $deleted_employe['phone_number']; ?></td>
-        <td><?php echo $deleted_employe['skills']; ?></td>
-        <td><?php echo $deleted_employe['gender']; ?></td>
-        <td><?php echo $deleted_employe['entity']; ?></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td>
         <form method="post" action="archive">
-            <input type="hidden" name="restore" value="<?php echo $deleted_employe['id_employe'];?>">
+            <input type="hidden" name="restore" value="">
             <button>Restore</button>
         </form>
         <form method="post" action="delete">
-            <input type="hidden" name="id" value="<?php echo $deleted_employe['id_employe'];?>">
+            <input type="hidden" name="id" value="">
             <button>Delete</button>
         </form>
         </td>
       </tr>
-      <?php endforeach; ?>
+
   </table>
 </div>
+
+@endsection

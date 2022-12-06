@@ -48,18 +48,33 @@ class VacationController extends Controller
 
         if($employe){
 
-                vacation::create([
-                    'employe_id' => $employe->id,
-                    'employe_name' => $request->employe_name,
-                    'vacation_start' => carbon::now(),
-                    'vacation_end' => carbon::now()->addDays($request->duration),
-                    'vacation_pointer' => carbon::now(),
-                    'days_available' => $request->days_available,
-                    'vacation_status' => 'Active',
-                ]);
+            $VacationPerEmploye = DB::table('vacations')
+                ->where('employe_name',$request->employe_name)
+                ->where('vacation_status','Active')
+                ->first();
 
-                return redirect()->route('vacation.create')
-                ->with('vacation.added','Vacation has been set up for employe : ' . $request->employe_name);
+                if(!$VacationPerEmploye){
+                    
+                    vacation::create([
+                        'employe_id' => $employe->id,
+                        'employe_name' => $request->employe_name,
+                        'vacation_start' => carbon::now(),
+                        'vacation_end' => carbon::now()->addDays($request->duration),
+                        'vacation_pointer' => carbon::now(),
+                        'days_available' => $request->days_available,
+                        'vacation_status' => 'Active',
+                    ]);
+
+                    return redirect()->route('vacation.create')
+                    ->with('vacation.added','Vacation has been set up for employe : ' . $request->employe_name);
+                }
+
+                else {
+                    return redirect()->route('vacation.create')
+                    ->with('vacation.notfound','Employe {'. $request->employe_name .'} was found already');
+                }
+
+
             }
 
             else {
@@ -67,6 +82,10 @@ class VacationController extends Controller
                 return redirect()->route('vacation.create')
                 ->with('vacation.notfound','Employe {'. $request->employe_name .'} was not found');
             }
+
+
+
+        
     }
 
     /**

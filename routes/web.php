@@ -6,6 +6,7 @@ use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VacationController;
 use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\PaymentCheckController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,7 @@ use App\Http\Controllers\SalaryController;
 
 
 
-Route::get('/home','HomeController@index')->name('home')->middleware(EnsureAdminIsLogged::class);
-
+Route::get('home','HomeController@index')->name('home')->middleware(EnsureAdminIsLogged::class);
 
 Route::controller(CustomAuthController::class)->group(function () {
 
@@ -29,7 +29,7 @@ Route::controller(CustomAuthController::class)->group(function () {
     Route::post('custom-login', 'CustomLogin')->name('login.custom');
     Route::get('logout','CustomLogOut')->name('logout');
 });
-    
+
 Route::resource('employe',EmployeController::class);
 
 Route::resource('admin',AdminController::class);
@@ -37,3 +37,12 @@ Route::resource('admin',AdminController::class);
 Route::resource('vacation',VacationController::class);
 
 Route::resource('salary',SalaryController::class);
+
+Route::controller(PaymentCheckController::class)->group(function () {
+
+    Route::post('payment','preview')->name('preview');
+    Route::view('payment','paymentcheck');
+});
+
+
+Route::view('archive','archive');

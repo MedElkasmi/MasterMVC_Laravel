@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeController extends Controller
 {
@@ -80,9 +81,6 @@ class EmployeController extends Controller
     public function show(Employe $employe)
     {
         //
-        $employe = Employe::find($employe);
-
-        return view('employe.show',compact('employe'));
     }
 
     /**
@@ -137,4 +135,6 @@ class EmployeController extends Controller
 
         return redirect()->route('employe.index')->with('deleted','An employe has been deleted successfully');
     }
+
+
 }

@@ -1,7 +1,13 @@
+@extends('Layouts.Master')
+
+@section('content')
+
 <div id="block-print" class="container">
-    <form class="" action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+    <form action="{{route('preview')}}" method="POST">
+        @csrf
+        @method('POST')
         <div class="form-group find-form">
-            <input type="text" name="find">
+            <input type="text" name="employe">
             <button type="submit">Preview</button>
         </div>
      </form>
@@ -22,6 +28,9 @@
                 <th colspan="3">HONEST MEDIA</th>
             </tr>
         </thead>
+
+    @foreach ($payment as $employe)
+            
         <tr style="background-color:#999;color:white">
             <td colspan="2">Non & Prenom</td>
             <td colspan="2">Qualification</td>
@@ -29,8 +38,8 @@
             <td>Matricule</td>
         </tr>
         <tr>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
+            <td colspan="2">{{$employe->employe_name}}</td>
+            <td colspan="2">{{$employe->employe_skills}}</td>
             <td></td>
             <td></td>
         </tr>
@@ -88,6 +97,9 @@
         <tr>
             <td> </td>
             <td></td>  
-        </tr>                
+        </tr>    
+    @endforeach           
     </table>
 </div><!--end div -->
+
+@endsection
