@@ -11,7 +11,7 @@
             <button type="submit">Preview</button>
         </div>
      </form>
-    <h2>bulletin de paie</h2>
+    <h2>Payment Check</h2>
 </div>
 
 <div id="block-print" class="container">
@@ -19,17 +19,13 @@
     <table class="table table-bordered text-center" >
         <thead>
             <tr style="background-color:#e91e63;font-size:18px;color:white;">
-                <th colspan="2">Honest Media SARL, App 2 eme<br>
-                Etage Rue Mohamed Zerektouni<br>
-                Impasse Mohamed Azzouzi - <br>
-                Alhoceima//CNSS : 9817810<br>
-                Tel : 0539 84 12 33</th>
-                <th colspan="2">BULLETIEN DE PAIE</th>
-                <th colspan="3">HONEST MEDIA</th>
+                <th colspan="2">Company Address
+                Tel : 00 00 00 00 00 </th>
+                <th colspan="2">Payment Check</th>
+                <th colspan="3"></th>
             </tr>
         </thead>
 
-    @foreach ($payment as $employe)
             
         <tr style="background-color:#999;color:white">
             <td colspan="2">Non & Prenom</td>
@@ -38,8 +34,8 @@
             <td>Matricule</td>
         </tr>
         <tr>
-            <td colspan="2">{{$employe->employe_name}}</td>
-            <td colspan="2">{{$employe->employe_skills}}</td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
             <td></td>
             <td></td>
         </tr>
@@ -97,8 +93,8 @@
         <tr>
             <td> </td>
             <td></td>  
-        </tr>    
-    @endforeach           
+        </tr>   
+        
     </table>
 </div><!--end div -->
 

@@ -11,18 +11,15 @@ class PaymentCheckController extends Controller
 
         $payment = DB::table('salaries')->where('employe_name',$request->employe)->get();
 
-        //dd($payment);
-
         if($payment){
 
             $employe = DB::table('salaries')
-                ->join('contacts', 'users.id', '=', 'contacts.user_id')
-                ->select('users.*', 'contacts.phone', 'orders.price')
-                ->get();
+            ->join('employes', 'employes.id', '=', 'salaries.employe_id')
+            ->select(
+            'employes.full_name','employes.skills','employes.hire_date',
+            'employes.cnss_info','employes.birth_date',
+            'salaries.salary_brut','salaries.salary_net')->get();
 
-            return view('paymentcheck')->with([
-                'payment'=> $payment
-            ]);
         }
 
         else {
