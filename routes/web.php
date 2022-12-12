@@ -41,7 +41,9 @@ Route::resource('salary',SalaryController::class);
 Route::controller(PaymentCheckController::class)->group(function () {
 
     Route::post('payment','preview')->name('preview');
+    Route::get('pay','index');
     Route::view('payment','paymentcheck');
+
 });
 
 

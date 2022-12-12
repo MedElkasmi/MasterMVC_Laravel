@@ -26,7 +26,8 @@
             </tr>
         </thead>
 
-            
+
+                 
         <tr style="background-color:#999;color:white">
             <td colspan="2">Non & Prenom</td>
             <td colspan="2">Qualification</td>
@@ -94,6 +95,8 @@
             <td> </td>
             <td></td>  
         </tr>   
+
+
         
     </table>
 </div><!--end div -->
