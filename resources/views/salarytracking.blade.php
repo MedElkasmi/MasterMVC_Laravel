@@ -6,6 +6,8 @@
     <canvas id="SalaryChart"></canvas>
 </div>
 
+
+
 <div class="container history">
     <form action="{{route('salary.store')}}" method="POST">
         @csrf
@@ -19,6 +21,7 @@
         <input type="text" name="sbrut">
         <input type="submit" value="Add To List"><br><br>
     </form>
+
 
     @if(session()->has('Salary.added'))
         <div class="alert alert-success">{{ session()->get('Salary.added') }}</div>

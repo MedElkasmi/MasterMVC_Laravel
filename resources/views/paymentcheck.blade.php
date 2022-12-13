@@ -11,10 +11,16 @@
             <button type="submit">Preview</button>
         </div>
      </form>
-    <h2>Payment Check</h2>
+    <h2>Invoice</h2>
 </div>
 
 <div id="block-print" class="container">
+
+    @if(session()->has('Preview_NotFound'))
+        <div class="alert alert-danger">{{ session()->get('Preview_NotFound') }}</div>
+    @endif
+
+    <div class="alert alert-info">In order to print this invoice, you might be forced to take a quick screenshot.</div>
 
     <table class="table table-bordered text-center" >
         <thead>
@@ -26,8 +32,8 @@
             </tr>
         </thead>
 
-
-                 
+        @if (isset($employe))
+                  
         <tr style="background-color:#999;color:white">
             <td colspan="2">Non & Prenom</td>
             <td colspan="2">Qualification</td>
@@ -35,8 +41,8 @@
             <td>Matricule</td>
         </tr>
         <tr>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
+            <td colspan="2">{{$employe->full_name}}</td>
+            <td colspan="2">{{$employe->skills}}</td>
             <td></td>
             <td></td>
         </tr>
@@ -45,14 +51,14 @@
             <td>N C.N.S.S</td>
             <td>Date de Naissance</td>
             <td>Salaire de base</td>
-            <td>Periode de Paie</td>
+            <td>Periode de net</td>
         </tr>
         <tr>
-            <td colspan="2" ></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td colspan="2" >{{$employe->hire_date}}</td>
+            <td>{{$employe->cnss_info}}</td>
+            <td>{{$employe->birth_date}}</td>
+            <td>{{$employe->salary_brut}}</td>
+            <td>{{$employe->salary_net}}</td>
         </tr>
         <tr style="background-color:#999;color:white">
             <td colspan="2">Libelle</td>
@@ -92,11 +98,11 @@
             
         </tr> 
         <tr>
-            <td> </td>
-            <td></td>  
+            <td></td>
+            <td>{{$employe->salary_net}}</td>  
         </tr>   
 
-
+        @endif
         
     </table>
 </div><!--end div -->

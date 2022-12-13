@@ -40,11 +40,9 @@ Route::resource('salary',SalaryController::class);
 
 Route::controller(PaymentCheckController::class)->group(function () {
 
-    Route::post('payment','preview')->name('preview');
-    Route::get('pay','index');
-    Route::view('payment','paymentcheck');
+    Route::post('payment_post','preview')->name('preview');
+    Route::get('payment','index')->name('payment_index');
 
 });
-
 
 Route::view('archive','archive');
