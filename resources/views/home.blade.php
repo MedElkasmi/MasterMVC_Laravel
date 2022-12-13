@@ -13,7 +13,7 @@
             </a>
         </div>
         <div class="col-sm-2 op">
-            <a href="">
+            <a href="{{ route('payment_index')}}">
                 <i class="fa fa-print fa-5x"></i>
                 <h3>Payment Check</h3>      
             </a>    

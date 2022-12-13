@@ -1,27 +1,39 @@
+@extends('Layouts.Master')
+
+@section('content')
+
 <div id="block-print" class="container">
-    <form class="" action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+    <form action="{{route('preview')}}" method="POST">
+        @csrf
+        @method('POST')
         <div class="form-group find-form">
-            <input type="text" name="find">
+            <input type="text" name="employe">
             <button type="submit">Preview</button>
         </div>
      </form>
-    <h2>bulletin de paie</h2>
+    <h2>Invoice</h2>
 </div>
 
 <div id="block-print" class="container">
 
+    @if(session()->has('Preview_NotFound'))
+        <div class="alert alert-danger">{{ session()->get('Preview_NotFound') }}</div>
+    @endif
+
+    <div class="alert alert-info">In order to print this invoice, you might be forced to take a quick screenshot.</div>
+
     <table class="table table-bordered text-center" >
         <thead>
             <tr style="background-color:#e91e63;font-size:18px;color:white;">
-                <th colspan="2">Honest Media SARL, App 2 eme<br>
-                Etage Rue Mohamed Zerektouni<br>
-                Impasse Mohamed Azzouzi - <br>
-                Alhoceima//CNSS : 9817810<br>
-                Tel : 0539 84 12 33</th>
-                <th colspan="2">BULLETIEN DE PAIE</th>
-                <th colspan="3">HONEST MEDIA</th>
+                <th colspan="2">Company Address
+                Tel : 00 00 00 00 00 </th>
+                <th colspan="2">Payment Check</th>
+                <th colspan="3"></th>
             </tr>
         </thead>
+
+        @if (isset($employe))
+                  
         <tr style="background-color:#999;color:white">
             <td colspan="2">Non & Prenom</td>
             <td colspan="2">Qualification</td>
@@ -29,8 +41,8 @@
             <td>Matricule</td>
         </tr>
         <tr>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
+            <td colspan="2">{{$employe->full_name}}</td>
+            <td colspan="2">{{$employe->skills}}</td>
             <td></td>
             <td></td>
         </tr>
@@ -39,14 +51,14 @@
             <td>N C.N.S.S</td>
             <td>Date de Naissance</td>
             <td>Salaire de base</td>
-            <td>Periode de Paie</td>
+            <td>Periode de net</td>
         </tr>
         <tr>
-            <td colspan="2" ></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td colspan="2" >{{$employe->hire_date}}</td>
+            <td>{{$employe->cnss_info}}</td>
+            <td>{{$employe->birth_date}}</td>
+            <td>{{$employe->salary_brut}}</td>
+            <td>{{$employe->salary_net}}</td>
         </tr>
         <tr style="background-color:#999;color:white">
             <td colspan="2">Libelle</td>
@@ -86,8 +98,13 @@
             
         </tr> 
         <tr>
-            <td> </td>
-            <td></td>  
-        </tr>                
+            <td></td>
+            <td>{{$employe->salary_net}}</td>  
+        </tr>   
+
+        @endif
+        
     </table>
 </div><!--end div -->
+
+@endsection

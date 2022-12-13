@@ -23,24 +23,35 @@ class Kernel extends ConsoleKernel
             $data = DB::table('vacations')->get();
 
             foreach ($data as $user) {
-
-                $update_pointed = DB::table('vacations')
-                ->where('id', $user->id)->update(['vacation_pointer' => carbon::now()]);
-
+    
+                DB::table('vacations')->where('id', $user->id)->update(['vacation_pointer' => carbon::now()]);
+    
+                $start = Carbon::createMidnightDate($user->vacation_start);
+                $end = Carbon::createMidnightDate($user->vacation_end);
+    
                 if($user->vacation_end == $user->vacation_pointer){
                     
-                    $vacation_start = Carbon::createMidnightDate($user->vacation_start);
-                    $vacation_end = Carbon::createMidnightDate($user->vacation_end);
-
-                    $days_diff= $vacation_start->diffInDays($vacation_end);
-
+                    $days_diff= $start->diffInDays($end);
+    
                     $days_available = $user->days_available - $days_diff;
-
-                    $update_status = DB::table('vacations')->where('id', $user->id)
-                    ->update(
-                        ['days_available' => $days_available,'vacation_status' => 'ended']
-                    );
-                }      
+    
+                    DB::table('vacations')->where('id', $user->id)->update([
+    
+                        'days_available' => $days_available,
+                        'vacation_status' => 'ended'
+                    ]);
+                }
+                
+                if($user->vacation_status == 'ended'){
+    
+                    if($end->diffInDays($user->vacation_pointer) == 2){
+    
+                        DB::table('vacations')->where('id', $user->id)->update([
+    
+                            'days_available' => $user->days_available + 2
+                        ]);
+                    }
+                }
             }
 
         })->everyMinute();

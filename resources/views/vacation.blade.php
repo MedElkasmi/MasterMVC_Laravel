@@ -2,6 +2,21 @@
 
 @section('content')
 
+  <div class="container">
+    @if(session()->has('vacation.added'))
+    <div class="alert alert-success">{{ session()->get('vacation.added') }}</div>
+    @endif
+  
+    @if(session()->has('vacation.notfound'))
+    <div class="alert alert-danger">{{ session()->get('vacation.notfound') }}</div>
+    @endif
+  
+    @if(session()->has('Vacation.Cancelled'))
+    <div class="alert alert-danger">{{ session()->get('Vacation.Cancelled') }}</div>
+    @endif
+  </div>
+
+
   <div style="padding-top:70px;" class="container holidays">
       <canvas id="VacationChart"></canvas>
   </div>
@@ -29,18 +44,6 @@
         <h6>(Vacation will start after one week from selected date.)</h6>
         <input type="submit" name="addtolist" value="Add to list">
     </form>
-
-    @if(session()->has('vacation.added'))
-      <div class="alert alert-success">{{ session()->get('vacation.added') }}</div>
-    @endif
-
-    @if(session()->has('vacation.notfound'))
-      <div class="alert alert-danger">{{ session()->get('vacation.notfound') }}</div>
-    @endif
-
-    @if(session()->has('Vacation.Cancelled'))
-      <div class="alert alert-danger">{{ session()->get('Vacation.Cancelled') }}</div>
-    @endif
 
     <table class="table table-bordered text-center">
         

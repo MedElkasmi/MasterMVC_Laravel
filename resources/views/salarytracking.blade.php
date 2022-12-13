@@ -6,6 +6,8 @@
     <canvas id="SalaryChart"></canvas>
 </div>
 
+
+
 <div class="container history">
     <form action="{{route('salary.store')}}" method="POST">
         @csrf
@@ -20,12 +22,17 @@
         <input type="submit" value="Add To List"><br><br>
     </form>
 
+
     @if(session()->has('Salary.added'))
         <div class="alert alert-success">{{ session()->get('Salary.added') }}</div>
     @endif
 
     @if(session()->has('Salary.notfound'))
         <div class="alert alert-danger">{{ session()->get('Salary.notfound') }}</div>
+    @endif
+
+    @if(session()->has('Salary.deleted'))
+        <div class="alert alert-danger">{{ session()->get('Salary.deleted') }}</div>
     @endif
 
     <table class="table table-bordered text-center">
@@ -38,27 +45,26 @@
             <td>Salaire Net</td>
             <td>Control</td>
         </tr>
-
+        @foreach ($data as $employe)
+        
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{$employe->employe_name}}</td>
+            <td>{{$employe->employe_skills}}</td>
+            <td>{{$employe->employe_entity}}</td>
+            <td>{{$employe->salary_upgrade}}</td>
+            <td>{{$employe->salary_brut}}</td>
+            <td>{{$employe->salary_net}}</td>
             <td>
-                <form method="GET" action="">
-                    @csrf
-                    <button type="submit">Update</button>
-                  </form>
-                
-                  <form method="POST" action="">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Delete</button>
-                  </form>
+
+            <form method="POST" action="{{route('salary.destroy',$employe->id)}}">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete</button>
+            </form>
             </td>
         </tr>
+
+        @endforeach
     </table>
 
 </div>

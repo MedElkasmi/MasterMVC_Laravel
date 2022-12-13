@@ -28,7 +28,10 @@ class SalaryController extends Controller
      */
     public function create()
     {
-        return view('salarytracking');
+        $data = Salary::all();
+        return view('salarytracking')->with([
+            'data' => $data
+        ]);
     }
 
     /**
@@ -59,7 +62,6 @@ class SalaryController extends Controller
                 'salary_upgrade' => carbon::now(),
                 'salary_brut' => $data['salaryBrut'],
                 'salary_net' => $data['salaryNet'],
-                'token' => Str::random(10),
             ]);
 
 
@@ -82,9 +84,7 @@ class SalaryController extends Controller
      */
     public function show(Salary $salary)
     {
-        $salary = Employe::find($salary);
 
-        return view('salary.show',compact('salary'));
     }
 
     /**
@@ -118,7 +118,10 @@ class SalaryController extends Controller
      */
     public function destroy(Salary $salary)
     {
-        //
+        $salary->delete();
+
+        return redirect()->route('salary.create')->with('Salary.deleted','Salary info has removed.');
     }
+
 
 }
