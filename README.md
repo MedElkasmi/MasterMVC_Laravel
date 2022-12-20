@@ -1,6 +1,6 @@
 Quick Descrption about this project
 
-This is a Laravel version of MVC_Project, you might want to check this repo for comparaion.
+This is a Laravel application was made in 2019n and updated in 2022, its logic stayed the same, it was just a way to see what laravel 9 has introducted this year.
 
 Technologies used in this application listed below : 
 
