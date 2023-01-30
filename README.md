@@ -1,6 +1,6 @@
-Quick Descrption about this project
+SiriusRH is a comprehensive HR management solution built with Laravel, offering features like employee management, vacation tracking, salary increase tracking, Invoice systel and more for improved HR efficiency.
 
-This is a Laravel application was made in 2019n and updated in 2022, its logic stayed the same, it was just a way to see what laravel 9 has introducted this year.
+This is a Laravel application was made in 2019, updated in 2022, its logic stayed the same, it was just a way to see what laravel 9 has introducted this year.
 
 Technologies used in this application listed below : 
 
