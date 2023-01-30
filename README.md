@@ -17,3 +17,6 @@ This is screenshot of UI dashboard was taken before :
   <img src="https://i.imgur.com/KuPVbbt.jpg" width="600" alt="accessibility text">
 </p>
 
+
+Please note that this project is a work in progress and may not be complete or fully functional at this time.
+
